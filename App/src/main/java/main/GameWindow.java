@@ -8,6 +8,7 @@ public class GameWindow {
         jFrame = new JFrame();
 
         jFrame.setSize(400,400);
+        jFrame.setTitle("Seven kings");
         jFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         jFrame.add(gamePanel);
         jFrame.setLocationRelativeTo(null);
