@@ -16,17 +16,25 @@ public class GamePanel extends JPanel {
     private float xDir = 1f, yDir = 1f;
     private int frames = 0;
     private long lastCheck = 0;
-    private Color color = new Color(150,20,90);
+    private Color color = new Color(248, 178, 31);
     private Random random;
 
 
     public GamePanel (){
         random = new Random();
+        setPanelSize();
         mouseInputs = new MouseInputs(this);
         addKeyListener(new KeyboardInputs(this));
         addMouseListener(mouseInputs);
         addMouseMotionListener(mouseInputs);
 
+    }
+
+    private void setPanelSize() {
+        Dimension size = new Dimension(1280, 800);
+        setMinimumSize(size);
+        setPreferredSize(size);
+        setMaximumSize(size);
     }
 
     public void changeXDelta(int value){
@@ -48,26 +56,10 @@ public class GamePanel extends JPanel {
     //Вызывает repaint() и перерисовывает изменения после ввода.
     public void paintComponent(Graphics g){
         super.paintComponent(g);
-        updateRectangle();
-        g.setColor(color);
-        g.fillRect((int) xDelta, (int) yDelta,50,50);
 
-        //Счетчик FPS в консоль.
 
     }
 
-    private void updateRectangle() {
-        xDelta += xDir;
-        if (xDelta > 400 || xDelta < 0){
-            xDir*= -1;
-            color = getRndColor();
-        }
-        yDelta += yDir;
-        if (yDelta > 400 || yDelta < 0){
-            yDir *= -1;
-            color = getRndColor();
-        }
-    }
 
     private Color getRndColor(){
         int r = random.nextInt(255);
